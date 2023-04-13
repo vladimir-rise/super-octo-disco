@@ -1,3 +1,3 @@
 # super-octo-disco
 
-Testing #5 - breaking
+Testing #8 - bump: minor
