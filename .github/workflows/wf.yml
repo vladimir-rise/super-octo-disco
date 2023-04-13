@@ -48,5 +48,7 @@ jobs:
       - name: Push version
         run: |
           echo ${{ needs.build.outputs.repo_version_env }}
+          git config --global user.name 'Vladimir Faile'
+          git config --global user.email 'vladimir.faile@risecodes.com'
           git tag ${{ needs.build.outputs.repo_version_env }}
           git push --tags
