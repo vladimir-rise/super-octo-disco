@@ -29,8 +29,8 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Rise Version Action
+        uses: online-applications/version-action@v2.0.0
+        env:
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          ENVIRONMENT: ${{ github.ref_name }}
