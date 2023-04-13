@@ -30,7 +30,23 @@ jobs:
         run: echo Hello, world!
 
       - name: Rise Version Action
+        id: version
         uses: online-applications/version-action@v2.0.0
         env:
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
           ENVIRONMENT: ${{ github.ref_name }}
+
+  Push_Tag:
+    name: Push New Tag
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Push version
+        run: |
+          echo ${{ needs.build.outputs.repo_version_env }}
+          git tag ${{ needs.build.outputs.repo_version_env }}
+          git push --tags
