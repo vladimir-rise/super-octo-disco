@@ -45,7 +45,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Push version
         run: |
           echo ${{ needs.build.outputs.repo_version_env }}
           git config --global user.name 'Vladimir Faile'
