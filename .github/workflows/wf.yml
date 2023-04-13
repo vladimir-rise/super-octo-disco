@@ -37,9 +37,8 @@ jobs:
       - name: Rise Version Action
         id: version
         uses: online-applications/version-action@v2.0.0
-        env:
-          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-          ENVIRONMENT: ${{ github.ref_name }}
+        with:
+          bump: minor
 
   Push_Tag:
     name: Push New Tag
