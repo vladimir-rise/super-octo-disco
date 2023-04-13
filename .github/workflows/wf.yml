@@ -20,14 +20,20 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    outputs:
+      repo_version_env: ${{ steps.version.outputs.repo_tag }}
+      ecr_version_env: ${{ steps.version.outputs.ecr_tag }}
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - # Runs a single command using the runners shell
+        - name: Run a one-line script
+          run: echo Hello, world!
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+        with:
+          fetch-depth: 0
 
       - name: Rise Version Action
         id: version
@@ -42,9 +48,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - name: Push version
         run: |
           echo ${{ needs.build.outputs.repo_version_env }}
           git config --global user.name 'Vladimir Faile'
