@@ -39,9 +39,7 @@ jobs:
         uses: online-applications/version-action@v2.0.0
         env:
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-          ENVIRONMENT: ${{ github.ref_name }}
-        with:
-          bump: major
+          ENVIRONMENT: non-main
 
   Push_Tag:
     name: Push New Tag
