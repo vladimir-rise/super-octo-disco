@@ -41,7 +41,7 @@ jobs:
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
           ENVIRONMENT: ${{ github.ref_name }}
         with:
-          bump: breaking
+          bump: major
 
   Push_Tag:
     name: Push New Tag
