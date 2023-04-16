@@ -10,8 +10,11 @@ on:
   pull_request:
     branches: [ "main" ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+
+env:
+  COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+  ENVIRONMENT: ${{ github.ref_name }}
+
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -37,9 +40,8 @@ jobs:
       - name: Rise Version Action
         id: version
         uses: online-applications/version-action@v2.0.0
-        env:
-          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-          ENVIRONMENT: non-main
+        with:
+          bump: minor
 
   Push_Tag:
     name: Push New Tag
