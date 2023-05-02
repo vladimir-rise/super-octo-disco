@@ -5,8 +5,6 @@ name: CI
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  pull_request_review:
-    types: [submitted]
   pull_request:
     types:
       - closed
@@ -21,7 +19,7 @@ env:
 jobs:
   # This workflow contains a single job called "build"
     build:
-      if: github.event.review.state == 'approved' && github.event.pull_request.merged == true
+      if: github.event.pull_request.merged == true
       # The type of runner that the job will run on
       runs-on: ubuntu-latest
 
@@ -46,7 +44,7 @@ jobs:
             bump: feature
 
     Push_Tag:
-      if: github.event.review.state == 'approved' && github.event.pull_request.merged == true
+      if: github.event.pull_request.merged == true
       name: Push New Tag
       needs: [build]
       runs-on: ubuntu-latest
