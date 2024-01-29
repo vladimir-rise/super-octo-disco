@@ -19,7 +19,7 @@ jobs:
     
     - name: Set branch options
       id: set-branches
-      run: echo "::set-output name=branches::${{'[' + steps.get-branches.outputs.result + ']'}}"
+      run: echo "::set-output name=branches::[${{ steps.get-branches.outputs.result }}]"
 
   More:
     runs-on:
