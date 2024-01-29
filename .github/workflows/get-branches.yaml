@@ -1,0 +1,29 @@
+name: hello
+
+jobs:
+
+  Do:
+    runs-on:
+      ubuntu-latest
+    steps:
+    - name: Get branches
+      id: get-branches
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const branches = await github.rest.repos.listBranches({
+            owner: context.repo.owner,
+            repo: context.repo.repo
+          })
+          return branches.data.map(b => b.name)
+    
+    - name: Set branch options
+      id: set-branches
+      run: echo "::set-output name=branches::${{'[' + steps.get-branches.outputs.result + ']'}}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        type: choice
+        options: ${{ steps.set-branches.outputs.branches }}
