@@ -1,5 +1,13 @@
 name: hello
 
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        type: choice
+        options: ${{ steps.set-branches.outputs.branches }}
+
 jobs:
 
   Do:
@@ -21,9 +29,11 @@ jobs:
       id: set-branches
       run: echo "::set-output name=branches::${{'[' + steps.get-branches.outputs.result + ']'}}"
 
-on:
-  workflow_dispatch:
-    inputs:
-      branch:
-        type: choice
-        options: ${{ steps.set-branches.outputs.branches }}
+  More:
+    runs-on:
+      ubuntu-latest
+    steps:
+      - name: More
+        run: |
+          echo 'More'
+    
