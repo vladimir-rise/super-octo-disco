@@ -1,0 +1,18 @@
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+
+  build:
+    uses: ./.github/workflows/build.yml 
+    secrets: inherit
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy
+        run: echo "Deploying..."
