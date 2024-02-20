@@ -7,18 +7,42 @@ on:
 
 env:
   env1: "{\"hello\": \"from json\"}"
+  env2: "[hello,from,json]"
+  env3: "hello from json"
+  env4: "hello" "from" "json"
 
 jobs:
   Job1:
     runs-on: ubuntu-latest
     steps:
-    - name: Hello fromJson()
+    - name: Hello fromJson1
       env:
-        fromJ1: ${{ fromJson("[hello,from,json]") }}
-        fromJ2: ${{ fromJson("hello from json") }}
-        fromJ3: ${{ fromJson(env.env1) }}
-        fromJ4: ${{ fromJson("hello" "from" "json") }}
+        fromJ1: ${{ fromJson(env.env1) }}
       run: |
         echo $fromJ1
-        echo $fromJ2
-        echo $fromJ3
+
+  Job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello fromJson2
+        env:
+          fromJ2: ${{ fromJson(env.env2) }}
+        run: |
+          echo $fromJ2
+  Job3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello fromJson3
+        env:
+          fromJ3: ${{ fromJson(env.env3) }}
+        run: |
+          echo $fromJ3
+
+  Job4:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello fromJson4
+        env:
+          fromJ4: ${{ fromJson(env.env4) }}
+        run: |
+          echo $fromJ4
