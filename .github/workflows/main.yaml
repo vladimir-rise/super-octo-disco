@@ -1,5 +1,7 @@
 on:
   push:
+    branches:
+      - dev
     paths:
       - '.github/workflows/**' # Trigger on any changes within the folder
       - 'README.md' # Trigger on changes to this specific file

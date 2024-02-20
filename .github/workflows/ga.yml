@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  env1: "{\"hello\": \"from json\"}"
+  env1: "fromJ1={\"hello\": \"from json\"}"
   env2: "[hello,from,json]"
   env3: "hello from json"
   env4: "hello,from,json"
