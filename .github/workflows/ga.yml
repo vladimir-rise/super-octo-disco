@@ -5,10 +5,10 @@ on:
       - main
 
 env:
-  env1: "fromJ1={\"hello\": \"from json\"}"
-  env2: "[\"hello\",\"from\",\"json\"]"
-  env3: "hello from json"
-  env4: "hello,from,json"
+  env1: '{"hello": "from json"}'
+  env2: '["hello","from","json"]'
+  env3: 'hello from json'
+  env4: 'hello,from,json'
 
 jobs:
   Job1:
@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: Hello fromJson2
         env:
-          fromJ2: ${{ fromJson([\"hello\",\"from\",\"json\"]) }}
+          fromJ2: ${{ fromJson(env.env2) }}
         run: |
           echo $fromJ2
   Job3:
@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: Hello fromJson3
         env:
-          fromJ3: ${{ fromJson(hello from json) }}
+          fromJ3: ${{ fromJson(env.env3) }}
         run: |
           echo $fromJ3
 
@@ -42,6 +42,6 @@ jobs:
     steps:
       - name: Hello fromJson4
         env:
-          fromJ4: ${{ fromJson(hello,from,json) }}
+          fromJ4: ${{ fromJson(env.env4) }}
         run: |
           echo $fromJ4
