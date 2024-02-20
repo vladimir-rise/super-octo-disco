@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: Hello fromJson2
         env:
-          fromJ2: ${{ fromJson(env.env2) }}
+          fromJ2: ${{ fromJson("[\"hello\",\"from\",\"json\"]") }}
         run: |
           echo $fromJ2
   Job3:
@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: Hello fromJson3
         env:
-          fromJ3: ${{ fromJson(env.env3) }}
+          fromJ3: ${{ fromJson("hello from json") }}
         run: |
           echo $fromJ3
 
@@ -42,6 +42,6 @@ jobs:
     steps:
       - name: Hello fromJson4
         env:
-          fromJ4: ${{ fromJson(env.env4) }}
+          fromJ4: ${{ fromJson("hello,from,json") }}
         run: |
           echo $fromJ4
