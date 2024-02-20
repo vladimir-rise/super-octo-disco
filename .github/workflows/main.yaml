@@ -1,3 +1,4 @@
+name: github context
 on:
   push:
     branches:

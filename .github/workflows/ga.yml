@@ -1,4 +1,4 @@
-name: Hello fromJson()
+name: Hello fromJson
 on:
   push:
     branches:
@@ -14,18 +14,18 @@ jobs:
   Job1:
     runs-on: ubuntu-latest
     steps:
-    - name: Hello fromJson1
-      env:
-        fromJ1: ${{ fromJson(env.env1) }}
-      run: |
-        echo $fromJ1
+      - name: Hello fromJson1
+        env:
+          fromJ1: ${{ fromJson(env.env1) }}
+        run: |
+          echo $fromJ1
 
   Job2:
     runs-on: ubuntu-latest
     steps:
       - name: Hello fromJson2
         env:
-          fromJ2: ${{ fromJson("[\"hello\",\"from\",\"json\"]") }}
+          fromJ2: ${{ fromJson([\"hello\",\"from\",\"json\"]) }}
         run: |
           echo $fromJ2
   Job3:
@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: Hello fromJson3
         env:
-          fromJ3: ${{ fromJson("hello from json") }}
+          fromJ3: ${{ fromJson(hello from json) }}
         run: |
           echo $fromJ3
 
@@ -42,6 +42,6 @@ jobs:
     steps:
       - name: Hello fromJson4
         env:
-          fromJ4: ${{ fromJson("hello,from,json") }}
+          fromJ4: ${{ fromJson(hello,from,json) }}
         run: |
           echo $fromJ4

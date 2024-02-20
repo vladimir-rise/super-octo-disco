@@ -1,3 +1,4 @@
+name: echo secret
 on:
   workflow_call:
     inputs:
