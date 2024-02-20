@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  env1: "{\"hello\": \"from json\"}"
+
 jobs:
   Job1:
     runs-on: ubuntu-latest
@@ -13,6 +16,6 @@ jobs:
       env:
         fromJ1: ${{ fromJson([hello,from,json]) }}
         fromJ2: ${{ fromJson(hello from json) }}
-        fromJ3: ${{ fromJson("{\"hello\": \"from json\"}") }}
+        fromJ3: ${{ fromJson(env.env1) }}
       run: |
         echo "$GITHUB_CONTEXT"
