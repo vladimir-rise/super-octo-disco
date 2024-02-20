@@ -18,4 +18,6 @@ jobs:
         fromJ2: ${{ fromJson(hello from json) }}
         fromJ3: ${{ fromJson(env.env1) }}
       run: |
-        echo "$GITHUB_CONTEXT"
+        echo $fromJ1
+        echo $fromJ2
+        echo $fromJ3
