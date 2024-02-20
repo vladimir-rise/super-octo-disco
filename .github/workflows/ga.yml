@@ -14,9 +14,10 @@ jobs:
     steps:
     - name: Hello fromJson()
       env:
-        fromJ1: ${{ fromJson([hello,from,json]) }}
-        fromJ2: ${{ fromJson(hello from json) }}
+        fromJ1: ${{ fromJson("[hello,from,json]") }}
+        fromJ2: ${{ fromJson("hello from json") }}
         fromJ3: ${{ fromJson(env.env1) }}
+        fromJ4: ${{ fromJson("hello" "from" "json") }}
       run: |
         echo $fromJ1
         echo $fromJ2
