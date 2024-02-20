@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: Hello fromJson2
         env:
-          fromJ2: ${{ fromJson(["hello","from","json"]') }}
+          fromJ2: ${{ fromJson('["hello","from","json"]') }}
         run: |
           echo $fromJ2
   Job3:
