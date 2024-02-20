@@ -1,18 +1,16 @@
-on: 
+on:
   push:
-    branches:
-      - main
+    paths:
+      - '.github/workflows/**' # Trigger on any changes within the folder
+      - 'file.js' # Trigger on changes to this specific file
 
 jobs:
-
   build:
-    uses: ./.github/workflows/build.yml 
-    secrets: inherit
-
-  deploy:
-    needs: build
     runs-on: ubuntu-latest
-
     steps:
-      - name: Deploy
-        run: echo "Deploying..."
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
+          
