@@ -2,16 +2,17 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is building ${{ github.ref }}
 on:
   push:
-    paths:
-      - '.github/workflows/**' # Trigger on any changes within the folder
-      - 'file.js' # Trigger on changes to this specific file
-jobs:
+    branches:
+      - main
 
-  Dump:
+jobs:
+  Job1:
     runs-on: ubuntu-latest
     steps:
-    - name: Dump GitHub context
+    - name: Hello fromJson()
       env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
+        fromJ1: ${{ fromJson([hello,from,json]) }}
+        fromJ2: ${{ fromJson(hello from json) }}
+        fromJ3: ${{ fromJson("{\"hello\": \"from json\"}") }}
       run: |
         echo "$GITHUB_CONTEXT"
