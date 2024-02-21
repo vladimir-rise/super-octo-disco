@@ -21,3 +21,4 @@ jobs:
       - name: Echo secrets
         run: |
           echo "MY_SECRET1=${{ secrets.MY_SECRET }}"
+          echo "Hello"
