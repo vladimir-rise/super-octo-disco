@@ -1,14 +1,13 @@
 name: github context
 
-on:
-  push:
-    branches:
-      - '**'
-      - '!main'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
 
+on:
   pull_request:
     branches:
       - main
+  push:
 
 jobs:
   one:
